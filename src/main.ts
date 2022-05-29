@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.141.0/http/server.ts";
 import { addPage } from "./services.ts";
+import { PORT } from "./config.ts";
 
 serve(
   async (req) => {
@@ -10,7 +11,7 @@ serve(
     return new Response("Hello World\n");
   },
   {
-    port: 6000,
+    port: PORT,
     onListen: ({ port }) => console.log(`Listening on port ${port}`),
   }
 );
