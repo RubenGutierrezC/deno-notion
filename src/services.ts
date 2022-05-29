@@ -1,6 +1,8 @@
 import axiod from "https://deno.land/x/axiod@0.26.1/mod.ts";
 import { NOTION_KEY, NOTION_DATABASE_ID } from "./config.ts";
 
+console.log(NOTION_KEY, NOTION_DATABASE_ID);
+
 const http = axiod.create({
   baseURL: "https://api.notion.com/v1/",
   headers: {
