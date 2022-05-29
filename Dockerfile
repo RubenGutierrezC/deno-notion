@@ -10,4 +10,4 @@ ADD . .
 ENV NOTION_KEY=${NOTION_KEY}
 ENV NOTION_DATABASE_ID=${NOTION_DATABASE_ID}
 
-CMD deno run -A  src/main.ts
+CMD DENO_ENV=prod deno run -A src/main.ts

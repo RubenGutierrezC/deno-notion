@@ -1,8 +1,6 @@
 import axiod from "https://deno.land/x/axiod@0.26.1/mod.ts";
 import { NOTION_KEY, NOTION_DATABASE_ID } from "./config.ts";
 
-console.log(NOTION_KEY, NOTION_DATABASE_ID);
-
 const http = axiod.create({
   baseURL: "https://api.notion.com/v1/",
   headers: {
@@ -12,7 +10,7 @@ const http = axiod.create({
   },
 });
 
-export const addPage = async () => {
+export const addPage = async ({ title = "" }) => {
   const data = await http.post("pages", {
     parent: {
       database_id: NOTION_DATABASE_ID,
@@ -22,13 +20,13 @@ export const addPage = async () => {
         title: [
           {
             text: {
-              content: "Tuscan Kale",
+              content: title,
             },
           },
         ],
       },
-      Tags: {
-        multi_select: [{ name: "Pending" }, { name: "Work" }],
+      Status: {
+        select: { name: "undone" },
       },
     },
   });

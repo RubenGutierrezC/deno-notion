@@ -1,17 +1,10 @@
-import { serve } from "https://deno.land/std@0.141.0/http/server.ts";
-import { addPage } from "./services.ts";
+import { Application } from "https://deno.land/x/oak@v10.6.0/mod.ts";
 import { PORT } from "./config.ts";
+import { router } from "./router.ts";
 
-serve(
-  async (req) => {
-    console.log(req.url);
+const app = new Application();
 
-    const response = await addPage();
+app.use(router.routes());
+app.use(router.allowedMethods());
 
-    return new Response("Hello World\n");
-  },
-  {
-    port: PORT,
-    onListen: ({ port }) => console.log(`Listening on port ${port}`),
-  }
-);
+await app.listen({ port: PORT });
